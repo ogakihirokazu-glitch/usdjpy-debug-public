@@ -1,0 +1,15 @@
+name: DEBUG synthetic tests only
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run no-dependency offline tests
+        run: node --test tests/pure-ohlc.test.mjs
